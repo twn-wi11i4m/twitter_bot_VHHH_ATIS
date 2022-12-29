@@ -12,8 +12,14 @@ def api():
     return client
 
 def tweet(client:tweepy.Client, message:str):
-    client.create_tweet(text=message)
+    print(client.create_tweet(text=message))
     print('Tweeted successfully!')
+
+def tweet_double(client:tweepy.Client, first_message:str, second_message:str):
+    f_t = client.create_tweet(text=first_message)
+    print(f_t)
+    print(client.create_tweet(text=second_message, in_reply_to_tweet_id=f_t.data['id']))
+    print('Tweeted (2) successfully!')
 
 
 if __name__ == '__main__':
